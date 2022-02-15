@@ -1,0 +1,31 @@
+const domainName = `testingcf.net`
+const redirectHttpCode = 301
+const redirectMap = new Map([
+  ['aliciadallai.testingcf.net', '/agents/liciadallai'],
+])
+
+addEventListener('fetch', event => {
+  console.log(`Received new request: ${event.request.url}`)
+  event.respondWith(handleRequest(event.request))
+})
+
+/**
+ * Respond to the request
+ * @param {Request} request
+ */
+async function handleRequest(request) {
+  const url = new URL(request.url)
+  const { host } = url
+  console.log(`URL = ${url} and host = ${host}`)
+
+  const targetUrl = redirectMap.get(host)
+  console.log(`targetUrl = ${targetUrl}`)
+  if (targetUrl) {
+    console.log(`Triggered on ${targetUrl}`)
+    const redirectUrl = `https://${domainName}${targetUrl}`
+    console.log(`Redirecting to ${redirectUrl}`)
+    return Response.redirect(redirectUrl, redirectHttpCode)
+  }
+
+  return fetch(request)
+}
