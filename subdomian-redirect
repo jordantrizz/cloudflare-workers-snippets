@@ -1,7 +1,57 @@
 const domainName = `testingcf.net`
 const redirectHttpCode = 301
 const redirectMap = new Map([
-  ['aliciadallai.testingcf.net', '/agents/liciadallai'],
+  ['aliciadallai','/agents/alicia-m-dallai/'],
+  ['amandapopplewell','/agents/amanda-popplewell/'],
+  ['aneesahlangley','/agents/aneesah-langley/'],
+  ['brendadavenport','/agents/brenda-davenport/'],
+  ['lindaamplo','/agents/carl-russel/'],
+  ['carlospena','/agents/carlos-pena/'],
+  ['ceciliajaoude','/agents/cecilia-jaoude/'],
+  ['chrisnolan','/agents/christopher-nolan/'],
+  ['claudiabueti','/agents/claudia-bueti/'],
+  ['davidmayhew','/agents/david-mayhew/'],
+  ['davemelillo','/agents/david-melillo/'],
+  ['deannawilliamson','/agents/deanna-williamson/'],
+  ['debmasotta','/agents/deb-masotta/'],
+  ['debbiecangiano','/agents/debbie-cangiano/'],
+  ['debbiecitelli','/agents/deborah-citelli-robinson/'],
+  ['edgehillrealtors','/agents/edgehill-realtors/'],
+  ['eileensmith','/agents/eileen-smith/'],
+  ['elizabethmiedzinski','/agents/elizabeth-miedzinski/'],
+  ['frandetoro','/agents/fran-detoro/'],
+  ['gerrisutfin','/agents/gerri-sutfin/'],
+  ['jackpritchard','/agents/john-pritchard/'],
+  ['jamiecuzzocreo','/agents/jamie-cuzzocreo/'],
+  ['janicedreier','/agents/janice-dreier/'],
+  ['jeffwhitman','/agents/jeffrey-whitman/'],
+  ['johnbergin','/agents/john-bergin/'],
+  ['judithnormandin','/agents/judith-normandin/'],
+  ['kathyerland','/agents/katherine-erland/'],
+  ['kimfenlon','/agents/kim-fenlon/'],
+  ['kimrapierre','/agents/kimra-pierre/'],
+  ['liisalindholm','/agents/liisa-lindholm/'],
+  ['lilimastronardi','/agents/lili-mastronardi/'],
+  ['lindaamplo','/agents/linda-amplo/'],
+  ['lindateixeira-ohr','/agents/linda-teixeira-ohr/'],
+  ['loisdudley','/agents/lois-dudley/'],
+  ['loridesormeau','/agents/lori-desormeau/'],
+  ['marciadelfini','/agents/marcia-delfini/'],
+  ['maryberrios','/agents/mary-berrios/'],
+  ['marybethcanavan','/agents/marybeth-canavan/'],
+  ['mikefinoia','/agents/michael-finoia/'],
+  ['michaeltomkalski','/agents/michael-tomkalski/'],
+  ['nanettepastore','/agents/nanette-pastore/'],
+  ['phyllisryan','/agents/phyllis-ryan/'],
+  ['raybaldelli','/agents/ray-baldelli/'],
+  ['richardlombardo','/agents/richard-lombardo/'],
+  ['robcurry','/agents/rob-curry/'],
+  ['robertdavis','/agents/robert-davis/'],
+  ['sandystoddard','/agents/sandy-stoddard/'],
+  ['shermontethornton','/agents/sher-monte-thornton/'],
+  ['vinmasotta','/agents/vin-masotta/'],
+  ['virginiavinci','/agents/virginia-vinci/'],
+  ['wojtekborowski','/agents/wojtek-borowski/'],
 ])
 
 addEventListener('fetch', event => {
@@ -18,7 +68,11 @@ async function handleRequest(request) {
   const { host } = url
   console.log(`URL = ${url} and host = ${host}`)
 
-  const targetUrl = redirectMap.get(host)
+  const domainParts = host.split('.')
+  const subDomain = domainParts[0]
+  console.log(`subDomain = ${subDomain}`)
+
+  const targetUrl = redirectMap.get(subDomain)
   console.log(`targetUrl = ${targetUrl}`)
   if (targetUrl) {
     console.log(`Triggered on ${targetUrl}`)
