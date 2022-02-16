@@ -1,58 +1,20 @@
-const olddomainName = `testingcf.net`
-const newdomainName = `pearce.newtwistdesigns.com`
+/**
+ * Redirect subdomains to URL's on new domain name or same domain name.
+ *
+ * Created by LMT Solutions v0.1 - https://lmt.ca
+ *
+ * newdomainName - This is the new domain name you're redirecting to, but can also be the same as the original domain name.
+ * redirectHttpCode - The HTTP status code for the redirect.
+ * redirectMap - The redirect map, subdomain.domain.com to ${newdomainName}/URL
+ *
+ */
+const olddomainName = `testingdomain.com`
+const newdomainName = `testingdomain2.com`
 const redirectHttpCode = 301
 const redirectMap = new Map([
-  ['aliciadallai','/agents/alicia-m-dallai/'],
-  ['amandapopplewell','/agents/amanda-popplewell/'],
-  ['aneesahlangley','/agents/aneesah-langley/'],
-  ['brendadavenport','/agents/brenda-davenport/'],
-  ['lindaamplo','/agents/carl-russel/'],
-  ['carlospena','/agents/carlos-pena/'],
-  ['ceciliajaoude','/agents/cecilia-jaoude/'],
-  ['chrisnolan','/agents/christopher-nolan/'],
-  ['claudiabueti','/agents/claudia-bueti/'],
-  ['davidmayhew','/agents/david-mayhew/'],
-  ['davemelillo','/agents/david-melillo/'],
-  ['deannawilliamson','/agents/deanna-williamson/'],
-  ['debmasotta','/agents/deb-masotta/'],
-  ['debbiecangiano','/agents/debbie-cangiano/'],
-  ['debbiecitelli','/agents/deborah-citelli-robinson/'],
-  ['edgehillrealtors','/agents/edgehill-realtors/'],
-  ['eileensmith','/agents/eileen-smith/'],
-  ['elizabethmiedzinski','/agents/elizabeth-miedzinski/'],
-  ['frandetoro','/agents/fran-detoro/'],
-  ['gerrisutfin','/agents/gerri-sutfin/'],
-  ['jackpritchard','/agents/john-pritchard/'],
-  ['jamiecuzzocreo','/agents/jamie-cuzzocreo/'],
-  ['janicedreier','/agents/janice-dreier/'],
-  ['jeffwhitman','/agents/jeffrey-whitman/'],
-  ['johnbergin','/agents/john-bergin/'],
-  ['judithnormandin','/agents/judith-normandin/'],
-  ['kathyerland','/agents/katherine-erland/'],
-  ['kimfenlon','/agents/kim-fenlon/'],
-  ['kimrapierre','/agents/kimra-pierre/'],
-  ['liisalindholm','/agents/liisa-lindholm/'],
-  ['lilimastronardi','/agents/lili-mastronardi/'],
-  ['lindaamplo','/agents/linda-amplo/'],
-  ['lindateixeira-ohr','/agents/linda-teixeira-ohr/'],
-  ['loisdudley','/agents/lois-dudley/'],
-  ['loridesormeau','/agents/lori-desormeau/'],
-  ['marciadelfini','/agents/marcia-delfini/'],
-  ['maryberrios','/agents/mary-berrios/'],
-  ['marybethcanavan','/agents/marybeth-canavan/'],
-  ['mikefinoia','/agents/michael-finoia/'],
-  ['michaeltomkalski','/agents/michael-tomkalski/'],
-  ['nanettepastore','/agents/nanette-pastore/'],
-  ['phyllisryan','/agents/phyllis-ryan/'],
-  ['raybaldelli','/agents/ray-baldelli/'],
-  ['richardlombardo','/agents/richard-lombardo/'],
-  ['robcurry','/agents/rob-curry/'],
-  ['robertdavis','/agents/robert-davis/'],
-  ['sandystoddard','/agents/sandy-stoddard/'],
-  ['shermontethornton','/agents/sher-monte-thornton/'],
-  ['vinmasotta','/agents/vin-masotta/'],
-  ['virginiavinci','/agents/virginia-vinci/'],
-  ['wojtekborowski','/agents/wojtek-borowski/'],
+  ['subdomain1','/page-on-new-domain'],
+  ['subdomain2','/page2'],
+  ['subdomain3','/testing-page/page-test'],
 ])
 
 addEventListener('fetch', event => {
