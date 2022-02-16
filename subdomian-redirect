@@ -8,7 +8,6 @@
  * redirectMap - The redirect map, subdomain.domain.com to ${newdomainName}/URL
  *
  */
-const olddomainName = `testingdomain.com`
 const newdomainName = `testingdomain2.com`
 const redirectHttpCode = 301
 const redirectMap = new Map([
