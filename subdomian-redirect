@@ -1,4 +1,5 @@
-const domainName = `testingcf.net`
+const olddomainName = `testingcf.net`
+const newdomainName = `pearce.newtwistdesigns.com`
 const redirectHttpCode = 301
 const redirectMap = new Map([
   ['aliciadallai','/agents/alicia-m-dallai/'],
@@ -76,7 +77,7 @@ async function handleRequest(request) {
   console.log(`targetUrl = ${targetUrl}`)
   if (targetUrl) {
     console.log(`Triggered on ${targetUrl}`)
-    const redirectUrl = `https://${domainName}${targetUrl}`
+    const redirectUrl = `https://${newdomainName}${targetUrl}`
     console.log(`Redirecting to ${redirectUrl}`)
     return Response.redirect(redirectUrl, redirectHttpCode)
   }
