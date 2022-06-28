@@ -13,7 +13,7 @@ async function fetchAndReplace(request) {
  
  
   //Return maint page if you're not calling from a trusted IP
-  if (request.headers.get("cf-connecting-ip") !== "76.70.117.218") 
+  if (request.headers.get("cf-connecting-ip") !== "127.0.0.1") 
   {
     // Return modified response.
     return new Response(maintPage, {
