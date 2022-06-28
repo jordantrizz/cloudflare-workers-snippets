@@ -1,4 +1,4 @@
-//
+// Source https://www.resdevops.com/2018/03/20/cloudflare-workers-maintenance-mode-static-page/
 
 addEventListener("fetch", event => {
   event.respondWith(fetchAndReplace(event.request))
