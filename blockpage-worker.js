@@ -3,14 +3,12 @@ addEventListener("fetch", event => {
 })
  
 async function handleRequest(request) {
-    const clientIP = request.headers.get('CF-Connecting-IP');
+
+  let modifiedHeaders = new Headers()
+  modifiedHeaders.set('Content-Type', 'text/html')
+  modifiedHeaders.append('Pragma', 'no-cache')
  
-    let modifiedHeaders = new Headers() 
-    modifiedHeaders.set('Content-Type', 'text/html')
-    modifiedHeaders.append('Pragma', 'no-cache') 
-  
-    let block_ip = '';
-    block_ip += '<p>Your IP ' + clientIP + ' has been blocked temporarily</p>'; 
+  const clientIP = request.headers.get('CF-Connecting-IP');
 
 let block_page = `
 <!doctype html>
@@ -45,7 +43,7 @@ let block_page = `
   <div class="background">
     <div class="content">
       <h1>You've been blocked due to a security rule.</h1>
-      ${block_ip}
+      <p>Your IP ${clientIP} has been blocked temporarily</p>
         <p><b>-Management</b></p>
     </div>
   </div>
@@ -53,7 +51,17 @@ let block_page = `
 </body>
 `;
 
-  return new Response(block_page, {
-    headers: modifiedHeaders
-  })
+  // Return block page if you're not calling from a trusted IP
+  if (clientIP !== "127.0.0.1")  {
+    // Return modified response.
+    return new Response(block_page, {
+      headers: modifiedHeaders
+    })
+  
+  } else {
+    //Allow users from trusted into site
+    //Fire all other requests directly to our WebServers
+    return fetch(request)
+  }
+
 }
