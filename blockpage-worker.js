@@ -1,15 +1,16 @@
 addEventListener("fetch", event => {
-  event.respondWith(fetchAndReplace(event.request))
+  event.respondWith(handleRequest(event.request))
 })
  
-async function fetchAndReplace(request) {
+async function handleRequest(request) {
+    const clientIP = request.headers.get('CF-Connecting-IP');
  
-  let modifiedHeaders = new Headers() 
-  modifiedHeaders.set('Content-Type', 'text/html')
-  modifiedHeaders.append('Pragma', 'no-cache') 
+    let modifiedHeaders = new Headers() 
+    modifiedHeaders.set('Content-Type', 'text/html')
+    modifiedHeaders.append('Pragma', 'no-cache') 
   
-  let block_ip = '';
-  block_ip += '<p>Your IP ' + request.cf-connecting-ip + ' has been blocked temporarily</p>'; 
+    let block_ip = '';
+    block_ip += '<p>Your IP ' + clientIP + ' has been blocked temporarily</p>'; 
 
 let block_page = `
 <!doctype html>
@@ -56,4 +57,3 @@ let block_page = `
     headers: modifiedHeaders
   })
 }
-
